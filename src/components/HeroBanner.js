@@ -2,9 +2,9 @@ import React from 'react';
 
 const HeroBanner = () => {
     return (
-        <div className="relative bg-cover bg-center h-screen" style={{ backgroundImage: `url('https://via.placeholder.com/1920x1080')` }}>
+        <div className="relative bg-cover bg-center h-screen" style={{ backgroundImage: `url('https://www.usnews.com/cmsmedia/9a/74/e488e0db46dda064869bfa9cc19e/2024-mustang-family.jpg')` }}>
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+            <div className="absolute inset-0 bg-black-900 bg-opacity-50"></div>
 
             {/* Content */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-6">

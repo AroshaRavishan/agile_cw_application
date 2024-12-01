@@ -42,9 +42,9 @@ const Navbar = () => {
                     <div className="hidden xl:block">
                         <marquee behavior="scroll" direction="left" className="text-black-900 text-base font-semibold">
                             <span className="inline-flex items-center">
-                                you can count on
+                                Welcome
                                 <span className="bg-yellow-200 text-yellow-900 font-bold mx-2 px-2 py-1 rounded-lg">
-                                    Live journey information
+                                    to our website
                                 </span>
                             </span>
                         </marquee>
@@ -52,7 +52,7 @@ const Navbar = () => {
 
                     <div className="hidden xl:block">
                         <div className="flex items-center space-x-4">
-                            <Link to="/Signin" className="rounded-lg border border-black-800 text-black-900 text-base font-semibold py-2.5 px-6 hover:text-black-500">
+                            <Link to="/Login" className="rounded-lg border border-primary text-base font-semibold py-2.5 px-6  bg-primary text-white">
                                 Sign In
                             </Link>                        
                             </div>
@@ -70,7 +70,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 {/* mobile menu */}
-                <div className={`${isOpen ? "absolute right-0 mt-2 w-full bg-white rounded-xl shadow-lg z-50 px-3 py-3" : "hidden"} xl:hidden mt-4`}>
+                <div className={`${isOpen ? "absolute right-0 mt-2 w-full bg-white shadow-lg z-50 px-3 py-3" : "hidden"} xl:hidden mt-4`}>
                     <ul className="flex flex-col space-y-2 items-center">
                         <li className="py-3 w-full">
                             <a href="" className=" text-black-900 text-base font-medium block">

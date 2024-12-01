@@ -1,7 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
+    const navigate = useNavigate(); // Initialize useNavigate
     const {
         register,
         handleSubmit,
@@ -10,11 +13,15 @@ const Login = () => {
 
     const onSubmit = (data) => {
         console.log("Form Data: ", data);
-        alert("Login Successful!");
+        // Redirect to home page upon successful login
+        navigate("/");
     };
 
     return (
-        <div className="relative bg-cover bg-center h-screen px-4" style={{ backgroundImage: "url('https://godare.net/wp-content/uploads/2024/11/bg-banner.png')" }}>
+        <div
+            className="relative bg-cover bg-center h-screen px-4"
+            style={{ backgroundImage: "url('https://godare.net/wp-content/uploads/2024/11/bg-banner.png')" }}
+        >
             {/* Background overlay */}
             <div className="absolute inset-0 bg-black-900 opacity-50"></div>
 
@@ -48,8 +55,8 @@ const Login = () => {
                                     },
                                 })}
                                 className={`w-full px-3 py-2 border rounded focus:outline-none ${errors.email
-                                    ? "border-red-500 focus:ring-2 focus:ring-red-500"
-                                    : "border-gray-300 focus:ring-2 focus:ring-primary"
+                                        ? "border-red-500 focus:ring-2 focus:ring-red-500"
+                                        : "border-gray-300 focus:ring-2 focus:ring-primary"
                                     }`}
                                 placeholder="Enter your email or phone number"
                             />
@@ -80,8 +87,8 @@ const Login = () => {
                                     },
                                 })}
                                 className={`w-full px-3 py-2 border rounded focus:outline-none ${errors.password
-                                    ? "border-red-500 focus:ring-2 focus:ring-red-500"
-                                    : "border-gray-300 focus:ring-2 focus:ring-primary"
+                                        ? "border-red-500 focus:ring-2 focus:ring-red-500"
+                                        : "border-gray-300 focus:ring-2 focus:ring-primary"
                                     }`}
                                 placeholder="Enter your password"
                             />
@@ -91,6 +98,7 @@ const Login = () => {
                                 </p>
                             )}
                         </div>
+
                         {/* Sign-in button */}
                         <button
                             type="submit"
@@ -98,6 +106,7 @@ const Login = () => {
                         >
                             Sign in
                         </button>
+
                         {/* Remember me and Need help */}
                         <div className="flex items-center justify-between my-6">
                             <label className="flex items-center">
@@ -112,14 +121,12 @@ const Login = () => {
                             </a>
                         </div>
 
-                       
-
                         {/* Sign up */}
                         <p className="text-left text-sm text-[#666666] mt-6">
                             Don’t have an account?{" "}
-                            <a href="#" className="text-primary font-medium underline">
+                            <Link to="/Signup" className="text-primary font-medium underline">
                                 Sign up
-                            </a>
+                            </Link>
                         </p>
                     </form>
                 </div>
