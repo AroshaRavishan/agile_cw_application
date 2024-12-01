@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/agile_cw_application/static/css/main.320da89e.css",
+    "main.js": "/agile_cw_application/static/js/main.2ce96c2d.js",
+    "index.html": "/agile_cw_application/index.html",
+    "main.320da89e.css.map": "/agile_cw_application/static/css/main.320da89e.css.map",
+    "main.2ce96c2d.js.map": "/agile_cw_application/static/js/main.2ce96c2d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.320da89e.css",
+    "static/js/main.2ce96c2d.js"
+  ]
+}
