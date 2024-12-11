@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Eye, EyeOff } from "lucide-react";
 
 const Signup = () => {
     const [step, setStep] = useState(1);
     const [errorMessage, setErrorMessage] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const {
         register,
@@ -33,7 +35,9 @@ const Signup = () => {
             autoClose: 3000,
         });
     };
-
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
     const onSubmit = async (data) => {
         setErrorMessage("");
         
@@ -148,34 +152,56 @@ const Signup = () => {
                                     )}
                                 </div>
 
-                                <div className="mb-4">
+                                <div className="mb-4 relative">
                                     <label
                                         htmlFor="password"
                                         className="block text-lg font-normal text-black-900 mb-1"
                                     >
                                         Password
                                     </label>
-                                    <input
-                                        type="password"
-                                        id="password"
-                                        {...register("password", {
-                                            required: "Password is required",
-                                            validate: {
-                                                strength: validatePasswordStrength
-                                            }
-                                        })}
-                                        className={`w-full px-3 py-2 border rounded focus:outline-none ${
-                                            errors.password
-                                                ? "border-red-500 focus:ring-2 focus:ring-red-500"
-                                                : "border-gray-300 focus:ring-2 focus:ring-primary"
-                                        }`}
-                                        placeholder="Enter your password"
-                                    />
+                                    <div className="relative">
+                                        <input
+                                            type={showPassword ? "text" : "password"}
+                                            id="password"
+                                            {...register("password", {
+                                                required: "Password is required",
+                                                validate: {
+                                                    strength: validatePasswordStrength
+                                                }
+                                            })}
+                                            className={`w-full px-3 py-2 pr-10 border rounded focus:outline-none ${
+                                                errors.password
+                                                    ? "border-red-500 focus:ring-2 focus:ring-red-500"
+                                                    : "border-gray-300 focus:ring-2 focus:ring-primary"
+                                            }`}
+                                            placeholder="Enter your password"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={togglePasswordVisibility}
+                                            className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700"
+                                        >
+                                            {showPassword ? (
+                                                <EyeOff size={20} />
+                                            ) : (
+                                                <Eye size={20} />
+                                            )}
+                                        </button>
+                                    </div>
                                     {errors.password && (
                                         <p className="text-sm text-red-500 mt-1">
                                             {errors.password.message}
                                         </p>
                                     )}
+                                    <div className="text-sm text-gray-600 mt-1">
+                                        Password must:
+                                        <ul className="list-disc list-inside">
+                                            <li>Be at least 8 characters long</li>
+                                            <li>Contain uppercase and lowercase letters</li>
+                                            <li>Include a number</li>
+                                            <li>Have a special character (@$!%*?&)</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </>
                         )}

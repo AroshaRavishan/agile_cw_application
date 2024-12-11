@@ -6,6 +6,7 @@ import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import EmailVerify from './Pages/EmailVerify';
 import './App.css';
+import ResetPassword from './Pages/ResetPassword';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,6 +17,7 @@ function App() {
       <Route path="/Login" element={<Login />} />
       <Route path="/Signup" element={<Signup />} />
       <Route path="/Email-verify" element={<EmailVerify />} />
+      <Route path="/Reset-password"  element={<ResetPassword />} />
     </Routes>
   );
 }

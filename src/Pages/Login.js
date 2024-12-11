@@ -1,19 +1,23 @@
 import React from "react";
+import  { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios"; 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { Eye, EyeOff } from "lucide-react"; // Added icon import
 const Login = () => {
     const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
-
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
     const onSubmit = async (data) => {
         try {
             // Send login request to backend
@@ -82,27 +86,36 @@ const Login = () => {
                             )}
                         </div>
 
-                        <div className="mb-4">
+                        <div className="mb-4 relative">
                             <label htmlFor="password" className="block text-lg font-normal text-black-900 mb-1">
                                 Password
                             </label>
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                {...register("password", {
-                                    required: "Password is required",
-                                    minLength: {
-                                        value: 6,
-                                        message: "Password must be at least 6 characters",
-                                    },
-                                })}
-                                className={`w-full px-3 py-2 border rounded focus:outline-none ${errors.password
-                                    ? "border-red-500 focus:ring-2 focus:ring-red-500"
-                                    : "border-gray-300 focus:ring-2 focus:ring-primary"
-                                }`}
-                                placeholder="Enter your password"
-                            />
+                            <div className="relative">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    id="password"
+                                    name="password"
+                                    {...register("password", {
+                                        required: "Password is required",
+                                        minLength: {
+                                            value: 6,
+                                            message: "Password must be at least 6 characters",
+                                        },
+                                    })}
+                                    className={`w-full px-3 py-2 border rounded focus:outline-none pr-10 ${errors.password
+                                        ? "border-red-500 focus:ring-2 focus:ring-red-500"
+                                        : "border-gray-300 focus:ring-2 focus:ring-primary"
+                                    }`}
+                                    placeholder="Enter your password"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={togglePasswordVisibility}
+                                    className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-600"
+                                >
+                                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                </button>
+                            </div>
                             {errors.password && (
                                 <p className="text-sm text-red-500 mt-1">{errors.password.message}</p>
                             )}
