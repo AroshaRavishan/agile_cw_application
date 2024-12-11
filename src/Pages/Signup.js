@@ -13,41 +13,81 @@ const Signup = () => {
     const {
         register,
         handleSubmit,
+        trigger,
+        watch,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        mode: 'onChange'
+    });
 
     const notifySuccess = (message) => {
-        toast.success(message, { position: "top-right" });
+        toast.success(message, { 
+            position: "top-right",
+            autoClose: 3000,
+        });
     };
 
     const notifyError = (message) => {
-        toast.error(message, { position: "top-right" });
+        toast.error(message, { 
+            position: "top-right",
+            autoClose: 3000,
+        });
     };
 
     const onSubmit = async (data) => {
         setErrorMessage("");
+        
         try {
             if (step === 1) {
-                setStep(2);
+                // Validate first step before moving to next
+                const isValid = await trigger(["email", "password"]);
+                if (isValid) {
+                    setStep(2);
+                }
             } else {
-                const response = await axios.post("http://localhost:8080/api/users/register", {
-                    firstName: data.firstName,
-                    lastName: data.lastName,
-                    birthday: data.birthday,
-                    email: data.email,
-                    password: data.password,
-                });
+                // Validate entire form before submission
+                const isValid = await trigger();
+                if (isValid) {
+                    const response = await axios.post("http://localhost:8080/api/users/register", {
+                        firstName: data.firstName,
+                        lastName: data.lastName,
+                        birthday: data.birthday,
+                        email: data.email,
+                        password: data.password,
+                    });
 
-                console.log("Signup response: ", response.data);
-                notifySuccess("Signup successful! Redirecting to login...");
-                setTimeout(() => navigate("/login"), 3000); // Redirect after 3 seconds
+                    console.log("Signup response: ", response.data);
+                    notifySuccess("Signup successful! Redirecting to login...");
+                    setTimeout(() => navigate("/login"), 3000);
+                }
             }
         } catch (error) {
-            const message = error.response?.data || error.message;
+            const message = error.response?.data?.message || error.message || "Signup failed";
             setErrorMessage(message);
             notifyError(message);
             console.error("Signup error: ", message);
         }
+    };
+
+    // Password validation functions
+    const validatePasswordStrength = (password) => {
+        // At least 8 characters, one uppercase, one lowercase, one number, one special char
+        const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return strongPasswordRegex.test(password) || "Password must be strong (8+ chars, uppercase, lowercase, number, special char)";
+    };
+
+    // Age validation (must be 13+ years old)
+    const validateAge = (birthday) => {
+        const today = new Date();
+        const birthDate = new Date(birthday);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        
+        return age >= 13 || "You must be at least 13 years old to sign up";
     };
 
     return (
@@ -89,6 +129,10 @@ const Signup = () => {
                                                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                                                 message: "Invalid email address",
                                             },
+                                            validate: {
+                                                noWhitespace: (value) => 
+                                                    !value.includes(' ') || "Email cannot contain spaces"
+                                            }
                                         })}
                                         className={`w-full px-3 py-2 border rounded focus:outline-none ${
                                             errors.email
@@ -116,10 +160,9 @@ const Signup = () => {
                                         id="password"
                                         {...register("password", {
                                             required: "Password is required",
-                                            minLength: {
-                                                value: 6,
-                                                message: "Password must be at least 6 characters",
-                                            },
+                                            validate: {
+                                                strength: validatePasswordStrength
+                                            }
                                         })}
                                         className={`w-full px-3 py-2 border rounded focus:outline-none ${
                                             errors.password
@@ -151,6 +194,18 @@ const Signup = () => {
                                         id="firstName"
                                         {...register("firstName", {
                                             required: "First name is required",
+                                            minLength: {
+                                                value: 2,
+                                                message: "First name must be at least 2 characters"
+                                            },
+                                            maxLength: {
+                                                value: 50,
+                                                message: "First name cannot exceed 50 characters"
+                                            },
+                                            pattern: {
+                                                value: /^[A-Za-z\s'-]+$/,
+                                                message: "First name can only contain letters, spaces, hyphens, and apostrophes"
+                                            }
                                         })}
                                         className={`w-full px-3 py-2 border rounded focus:outline-none ${
                                             errors.firstName
@@ -178,6 +233,18 @@ const Signup = () => {
                                         id="lastName"
                                         {...register("lastName", {
                                             required: "Last name is required",
+                                            minLength: {
+                                                value: 2,
+                                                message: "Last name must be at least 2 characters"
+                                            },
+                                            maxLength: {
+                                                value: 50,
+                                                message: "Last name cannot exceed 50 characters"
+                                            },
+                                            pattern: {
+                                                value: /^[A-Za-z\s'-]+$/,
+                                                message: "Last name can only contain letters, spaces, hyphens, and apostrophes"
+                                            }
                                         })}
                                         className={`w-full px-3 py-2 border rounded focus:outline-none ${
                                             errors.lastName
@@ -205,12 +272,16 @@ const Signup = () => {
                                         id="birthday"
                                         {...register("birthday", {
                                             required: "Birthday is required",
+                                            validate: {
+                                                age: validateAge
+                                            }
                                         })}
                                         className={`w-full px-3 py-2 border rounded focus:outline-none ${
                                             errors.birthday
                                                 ? "border-red-500 focus:ring-2 focus:ring-red-500"
                                                 : "border-gray-300 focus:ring-2 focus:ring-primary"
                                         }`}
+                                        max={new Date().toISOString().split('T')[0]} // Prevent future dates
                                     />
                                     {errors.birthday && (
                                         <p className="text-sm text-red-500 mt-1">
@@ -227,6 +298,12 @@ const Signup = () => {
                         >
                             {step === 1 ? "Next" : "Sign up"}
                         </button>
+
+                        {errorMessage && (
+                            <p className="text-sm text-red-500 mt-4 text-center">
+                                {errorMessage}
+                            </p>
+                        )}
 
                         <p className="text-left text-sm text-[#666666] mt-6">
                             Already have an account?{" "}
