@@ -1,123 +1,91 @@
-import React from "react";
+import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 
-function Footer({ removemargin }) {
-    return (
-        <React.Fragment>
-            {/* <footer className={`footer-1 bg-gray-100 py-8 sm:py-12 ${removemargin ? '' : 'mt-10 md:mt-30'}`}> */}
-            <footer className={`footer-1 bg-gray-100 py-8 sm:py-12 ${removemargin ? '' : 'mt-10 md:mt-30'}`}>
-                <div class="container mx-auto px-4">
-                    <div class="sm:flex sm:flex-wrap sm:-mx-4 md:py-4">
-                        <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6">
-                            <h5 class="text-xl font-bold mb-6">Features</h5>
-                            <ul class="list-none footer-links">
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Cool stuff</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Random feature</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Team feature</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Stuff for developers</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Another one</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Last time</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 sm:mt-0">
-                            <h5 class="text-xl font-bold mb-6">Resources</h5>
-                            <ul class="list-none footer-links">
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Resource</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Resource name</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Another resource</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Final resource</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
-                            <h5 class="text-xl font-bold mb-6">About</h5>
-                            <ul class="list-none footer-links">
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Team</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Locations</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Privacy</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Terms</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="px-4 sm:w-1/2 md:w-1/4 xl:w-1/6 mt-8 md:mt-0">
-                            <h5 class="text-xl font-bold mb-6">Help</h5>
-                            <ul class="list-none footer-links">
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Support</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Help Center</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#" class="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800">Contact Us</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="px-4 mt-4 sm:w-1/3 xl:w-1/6 sm:mx-auto xl:mt-0 xl:ml-auto">
-                            <h5 class="text-xl font-bold mb-6 sm:text-center xl:text-left">Stay connected</h5>
-                            <div class="flex sm:justify-center xl:justify-start">
-                                <a href="" class="w-8 h-8 border border-2 border-gray-400 rounded-full text-center py-1 text-gray-600 hover:text-white hover:bg-blue-600 hover:border-blue-600">
-                                    <i class="fab fa-facebook"></i>
-                                </a>
-                                <a href="" class="w-8 h-8 border border-2 border-gray-400 rounded-full text-center py-1 ml-2 text-gray-600 hover:text-white hover:bg-blue-400 hover:border-blue-400">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="" class="w-8 h-8 border border-2 border-gray-400 rounded-full text-center py-1 ml-2 text-gray-600 hover:text-white hover:bg-red-600 hover:border-red-600">
-                                    <i class="fab fa-google-plus-g"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+const Footer = () => {
+  return (
+    <footer className="bg-[#2b241a] text-white py-20 mt-20">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Contact Us */}
+          <div>
+            <h3 className="text-lg font-bold mb-4">Contact Us</h3>
+            <p className="mb-4">Call Us: +3256-8954-3345</p>
+            <p className="mb-4">Whatsapp Us: +3256-8954-3345</p>
+            <p className="mb-4">Email: Support@Readease.co.uk</p>
+          </div>
 
-                    <div class="sm:flex sm:flex-wrap sm:-mx-4 mt-6 pt-6 sm:mt-12 sm:pt-12 border-t">
-                        <div class="sm:w-full px-4 md:w-1/6">
-                            <strong>FWR</strong>
-                        </div>
-                        <div class="px-4 sm:w-1/2 md:w-1/4 mt-4 md:mt-0">
-                            <h6 class="font-bold mb-2">Address</h6>
-                            <address class="not-italic mb-4 text-sm">
-                                123 6th St.<br />
-                                Melbourne, FL 32904
-                            </address>
-                        </div>
-                        <div class="px-4 sm:w-1/2 md:w-1/4 mt-4 md:mt-0">
-                            <h6 class="font-bold mb-2">Free Resources</h6>
-                            <p class="mb-4 text-sm">Use our HTML blocks for <strong>FREE</strong>.<br />
-                                <em>All are MIT License</em></p>
-                        </div>
-                        <div class="px-4 md:w-1/4 md:ml-auto mt-6 sm:mt-4 md:mt-0">
-                            <button class="px-4 py-2 bg-purple-800 hover:bg-purple-900 rounded text-white">Get Started</button>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </React.Fragment>
-    );
-}
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-bold mb-4">Quick Link</h3>
+            <ul>
+              <li className="mb-2">
+                <a href="#" className="hover:text-yellow-500">
+                  Our Partners
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-yellow-500">
+                  Sponsors
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-yellow-500">
+                  Administration
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h3 className="text-lg font-bold mb-4">Support</h3>
+            <ul>
+              <li className="mb-2">
+                <a href="#" className="hover:text-yellow-500">
+                  FAQ
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-yellow-500">
+                  Conditions
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-yellow-500">
+                  Privacy Policy
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      {/* Logo and Social Media */}
+      <div className="container flex grid grid-cols-1 md:grid-cols-3 gap-8 my-5">
+        {/* Logo */}
+        <div className="">
+          <img
+            src="https://godare.net/wp-content/uploads/2024/12/wahanalk-3-1.png"
+            alt="Logo"
+            className="w-20"
+          />
+        </div>
+        <div>
+            
+        </div>
+        {/* Social Media Icons */}
+        <div className="flex space-x-4">
+          <a href="#" className="text-blue-500 hover:text-white text-xl">
+            <FaFacebookF />
+          </a>
+          <a href="#" className="text-pink-500 hover:text-white text-xl">
+            <FaInstagram />
+          </a>
+          <a href="#" className="text-blue-400 hover:text-white text-xl">
+            <FaTwitter />
+          </a>
+        </div>
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;
