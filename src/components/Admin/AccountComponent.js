@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Favourites from "./Favs";
 import UserInfo from "./UserInfo";
 import ChangePwd from "./ChangePwd";
+import UpdateUserInfo from "./UpdateUserInfo"; // Import the new component
+
 const Account = () => {
   const [activeTab, setActiveTab] = useState("User Info");
 
@@ -14,19 +16,31 @@ const Account = () => {
           </div>
         );
       case "Favourites":
-        return <div className="p-6 bg-[#F6F6F6] rounded-lg shadow-md">
-          <Favourites />
-        </div>;
+        return (
+          <div className="p-6 bg-[#F6F6F6] rounded-lg shadow-md">
+            <Favourites />
+          </div>
+        );
       case "Change Password":
-        return <div className="p-6 bg-[#F6F6F6] rounded-lg shadow-md">
-          <ChangePwd />
-        </div>;
+        return (
+          <div className="p-6 bg-[#F6F6F6] rounded-lg shadow-md">
+            <ChangePwd />
+          </div>
+        );
+      case "Update User Info": // New tab for updating user info
+        return (
+          <div className="p-6 bg-[#F6F6F6] rounded-lg shadow-md">
+            <UpdateUserInfo />
+          </div>
+        );
       case "Logout":
-        return <div className="p-6 bg-[#F6F6F6] rounded-lg shadow-md">
-          <button className="px-8 py-2 text-sm bg-[#2b241a] text-white rounded-md">
+        return (
+          <div className="p-6 bg-[#F6F6F6] rounded-lg shadow-md">
+            <button className="px-8 py-2 text-sm bg-[#2b241a] text-white rounded-md">
               Logout
             </button>
-        </div>;
+          </div>
+        );
       default:
         return null;
     }
@@ -46,7 +60,7 @@ const Account = () => {
           <div className="p-4">
             <h3 className="text-lg font-semibold mb-4">Account</h3>
             <nav className="space-y-4">
-              {["User Info", "Favourites", "Change Password", "Logout"].map(
+              {["User Info", "Favourites", "Change Password", "Update User Info", "Logout"].map(
                 (tab) => (
                   <button
                     key={tab}
