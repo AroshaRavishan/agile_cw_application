@@ -139,12 +139,23 @@ const Login = () => {
             >
               Sign in
             </button>
-            <p className="text-left text-sm text-[#666666] mt-6">
-              Don’t have an account?{" "}
-              <Link to="/Signup" className="text-primary font-medium underline">
-                Sign up
+            <div className="flex justify-between items-center mt-6">
+              <p className="text-left text-sm text-[#666666]">
+                Don’t have an account?{" "}
+                <Link
+                  to="/Signup"
+                  className="text-primary font-medium underline"
+                >
+                  Sign up
+                </Link>
+              </p>
+              <Link
+                to="/Reset-password"
+                className="text-primary font-medium underline "
+              >
+                Reset Password
               </Link>
-            </p>
+            </div>
           </form>
         </div>
       </div>
