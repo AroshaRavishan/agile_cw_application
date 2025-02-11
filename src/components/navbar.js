@@ -30,13 +30,13 @@ const Header = () => {
     <header className="bg-[#2b241a] p-7 sticky top-0 z-[20]">
       <div className="max-w-7xl mx-auto flex justify-between items-center bg-white rounded-full px-6 py-2 shadow-md">
         {/* Logo Section */}
-        <div className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img
             src="https://godare.net/wp-content/uploads/2024/12/wahanalk-3-1.png" // Replace with your logo path
             alt="Wahanalk Logo"
             className="h-10 w-auto"
           />
-        </div>
+        </Link>
 
         <div className="flex items-center gap-5">
           {/* Icon Section */}

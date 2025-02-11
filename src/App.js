@@ -9,6 +9,7 @@ import './App.css';
 import ResetPassword from './Pages/ResetPassword';
 import Account from './Pages/Admin/Account'
 import Cars from './Pages/cars';
+import Postadd from './Pages/Postadd';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,6 +23,7 @@ function App() {
       <Route path="/Reset-password"  element={<ResetPassword />} />
       <Route path="/admin/account"  element={<Account />} />
       <Route path="/cars" element={<Cars />} />
+      <Route path="/post-add" element={<Postadd />} />
 
     </Routes>
   );
